@@ -1,0 +1,27 @@
+# Open a Telnet connection to the SMTP server
+$smtp = new-object System.Net.TelnetClient("smtp.gmail.com", 25)
+
+# Send the HELO command
+$smtp.WriteLine("HELO localhost")
+
+# Send the MAIL FROM command
+$smtp.WriteLine("MAIL FROM: <sender@gmail.com>")
+
+# Send the RCPT TO command
+$smtp.WriteLine("RCPT TO: <recipient@gmail.com>")
+
+# Send the DATA command
+$smtp.WriteLine("DATA")
+
+# Send the email message
+$smtp.WriteLine("Subject: This is a test email")
+$smtp.WriteLine("From: Sender Name <sender@gmail.com>")
+$smtp.WriteLine("To: Recipient Name <recipient@gmail.com>")
+$smtp.WriteLine("This is a test email sent using PowerShell and Telnet.")
+$smtp.WriteLine("")
+
+# Send the QUIT command
+$smtp.WriteLine("QUIT")
+
+# Close the Telnet connection
+$smtp.Close()
